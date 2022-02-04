@@ -1,0 +1,41 @@
+
+GROUP BY QUERY
+
+1. Contare quanti iscritti ci sono stati ogni anno
+SELECT COUNT(*) AS `number_of_enrolment_in_a_specif_year`
+FROM `students`
+GROUP BY YEAR(`enrolment_date`);
+
+2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
+SELECT COUNT(*) AS `NUMBER_OF_TEACHERS_IN_BUILDING`
+FROM `teachers`
+GROUP BY `office_address`;
+
+4.Contare quanti corsi di laurea ci sono per ogni dipartimento
+SELECT COUNT(*) 
+FROM `degrees` 
+GROUP BY`department_id`; 
+
+
+JOIN QUERY
+
+1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
+SELECT * 
+FROM `courses`
+JOIN `degrees`
+ON `courses`.`degree_id` = `degrees`.`id`
+WHERE `degrees`.`name` = 'Corso di Laurea in Economia'
+
+2. Selezionare tutti i Corsi di Laurea del Dipartimento di Neuroscienze
+SELECT *
+FROM `degrees`
+JOIN `departments`
+ON `degrees`.`department_id` = `departments`.`id`
+WHERE `department_id` = 7;
+
+3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
+SELECT *
+FROM `courses`
+JOIN `course_teacher`
+ON  `courses`.`id` = `course_teacher`.`teacher_id`
+WHERE `teacher_id` = 44;
